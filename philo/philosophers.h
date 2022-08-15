@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/11 17:02:46 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:48:31 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ERROR_ARGUMENTS "Invalid number of arguments"
 
 // n_meals is negative if not specified
+// if simulation_state is not 0, the simulation is over (a philosopher died)
 typedef struct s_settings
 {
 	int				n_philos;
@@ -29,8 +30,22 @@ typedef struct s_settings
 	int				time_to_sleep;
 	int				n_meals;
 	int				limited_meals;
+	int				simulation_state;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*print_mutex;
+	pthread_mutex_t	*state_mutex;
 }	t_settings;
+
+typedef struct s_philo
+{
+	int				id;
+	int				eaten;
+	int				state;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	t_settings		*settings;
+	
+}	t_philo;
 
 int		ft_putstr_fd(char *string, int fd);
 int		ft_putnbr_fd(int n, int fd);
@@ -50,7 +65,8 @@ int		ft_create_forks(int count, t_settings *settings);
 void	ft_destroy_simulation(t_settings *settings);
 
 // Misc functions
-int		ft_alone(void);
+int		ft_print_help(char *bin_name);
+int		ft_misc_mutexes(t_settings *settings);
 
 // Debug functions
 void	ft_print_settings(t_settings *settings);
