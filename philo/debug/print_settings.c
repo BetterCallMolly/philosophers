@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:08:33 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/11 16:38:12 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:22:57 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	ft_print_settings(t_settings *settings)
 {
+	if (!DEBUG)
+		return ;
 	ft_putstr_fd(LIGHTSKYBLUE2, STDERR);
 	ft_putstr_fd("\nSettings:\n", STDERR);
 	ft_putstr_fd(RESET, STDERR);
