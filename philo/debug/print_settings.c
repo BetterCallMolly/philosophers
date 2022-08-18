@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 13:08:33 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/15 15:22:57 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:06:01 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,12 @@ void	ft_print_settings(t_settings *settings)
 {
 	if (!DEBUG)
 		return ;
-	ft_putstr_fd(LIGHTSKYBLUE2, STDERR);
-	ft_putstr_fd("\nSettings:\n", STDERR);
-	ft_putstr_fd(RESET, STDERR);
-	ft_putstr_fd("\t- Number of philosophers: ", STDERR);
-	ft_putnbr_fd(settings->n_philos, STDERR);
-	ft_putstr_fd("\n\t- Time to die: ", STDERR);
-	ft_putnbr_fd(settings->time_to_die, STDERR);
-	ft_putstr_fd("\n\t- Time to eat: ", STDERR);
-	ft_putnbr_fd(settings->time_to_eat, STDERR);
-	ft_putstr_fd("\n\t- Time to sleep: ", STDERR);
-	ft_putnbr_fd(settings->time_to_sleep, STDERR);
-	ft_putstr_fd("\n\t- Number of meals: ", STDERR);
-	ft_putnbr_fd(settings->n_meals, STDERR);
-	ft_putstr_fd("\n\t- Limited meals: ", STDERR);
-	ft_putnbr_fd(settings->limited_meals, STDERR);
-	ft_putstr_fd("\n\n", STDERR);
+	printf("%s\nSettings%s\n\t- Number of philosophers : %d" \
+	"\n\t- Time to die : %d" \
+	"\n\t- Time to eat : %d" \
+	"\n\t- Time to sleep : %d" \
+	"\n\t- Number of meals : %d" \
+	"\n\t- Limited meals : %d%s\n", LIGHTSKYBLUE2, PINK1, settings->n_philos,
+		settings->time_to_die, settings->time_to_eat, settings->time_to_sleep,
+		settings->n_meals, settings->limited_meals, RESET);
 }
