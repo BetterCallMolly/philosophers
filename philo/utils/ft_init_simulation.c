@@ -6,13 +6,13 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:42:07 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/18 12:06:18 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:26:04 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-int	ft_init_philo(int id, t_settings *settings)
+t_philo	ft_init_philo(int id, t_settings *settings)
 {
 	t_philo	new;
 
@@ -22,25 +22,23 @@ int	ft_init_philo(int id, t_settings *settings)
 	new.settings = settings;
 	new.state = 1;
 	new.wait = id % 2;
+	new.last_meal = ft_timestamp();
 	settings->philos[id] = new;
-	return (0);
+	return (new);
 }
 
 int	ft_spawn_philos(t_settings *settings)
 {
-	t_philo	*philo_array;
 	int		i;
 
 	i = 0;
-	philo_array = (t_philo *) malloc(sizeof(t_philo) * settings->n_philos);
-	if (!philo_array)
+	settings->philos = (t_philo *) malloc(sizeof(t_philo) * settings->n_philos);
+	if (!settings->philos)
 		return (-1);
-	ft_bzero(philo_array, sizeof(t_philo) * settings->n_philos);
-	settings->philos = philo_array;
+	ft_bzero(settings->philos, sizeof(t_philo) * settings->n_philos);
 	while (i < settings->n_philos)
 	{
-		if (ft_init_philo(i, settings) < 0)
-			return (-1);
+		settings->philos[i] = ft_init_philo(i, settings);
 		i++;
 	}
 	return (0);
@@ -48,6 +46,10 @@ int	ft_spawn_philos(t_settings *settings)
 
 int	ft_init_simulation(t_settings *settings)
 {
+	unsigned long	size;
+
+	size = sizeof(pthread_t) * settings->n_philos;
+	settings->threads = (pthread_t *) malloc(size);
 	if (ft_spawn_philos(settings) == -1)
 		return (ft_error("Error while spawning philosophers", -1));
 	if (ft_create_forks(settings->n_philos, settings) == -1)
