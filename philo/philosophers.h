@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/15 15:48:31 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:56:38 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,19 @@
 # include <pthread.h>
 # include <stdlib.h>
 
+# ifndef DEBUG
+#  define DEBUG 1
+# endif
+
 # define STDOUT 1
 # define STDERR 2
 # define ERROR_ARGUMENTS "Invalid number of arguments"
 
 // n_meals is negative if not specified
 // if simulation_state is not 0, the simulation is over (a philosopher died)
+
+typedef struct s_philo	t_philo;
+
 typedef struct s_settings
 {
 	int				n_philos;
@@ -31,9 +38,10 @@ typedef struct s_settings
 	int				n_meals;
 	int				limited_meals;
 	int				simulation_state;
+	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*print_mutex;
-	pthread_mutex_t	*state_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	state_mutex;
 }	t_settings;
 
 typedef struct s_philo
@@ -44,7 +52,6 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_settings		*settings;
-	
 }	t_philo;
 
 int		ft_putstr_fd(char *string, int fd);
@@ -56,6 +63,8 @@ int		ft_atoi(const char *s);
 void	ft_bzero(void *s, size_t n);
 
 int		ft_error(char *message, int return_code);
+
+// Parsing functions
 int		ft_parse(int argc, char **argv, t_settings *settings);
 int		ft_lint(int faulty_index, char **argv, int argc, int return_code);
 
@@ -63,6 +72,8 @@ int		ft_lint(int faulty_index, char **argv, int argc, int return_code);
 int		ft_destroy_forks(int count_init, t_settings *settings);
 int		ft_create_forks(int count, t_settings *settings);
 void	ft_destroy_simulation(t_settings *settings);
+int		ft_init_simulation(t_settings *settings);
+void	ft_select_forks(t_philo *philos, t_settings *settings);
 
 // Misc functions
 int		ft_print_help(char *bin_name);
@@ -70,5 +81,5 @@ int		ft_misc_mutexes(t_settings *settings);
 
 // Debug functions
 void	ft_print_settings(t_settings *settings);
-
+void	ft_verbose(char *message, char *file, int line);
 #endif
