@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:35:04 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/15 15:37:35 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:53:40 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_print_help(char *bin_name)
 	ft_putstr_fd("\nUsage: ", STDERR);
 	ft_putstr_fd(bin_name, STDERR);
 	ft_putstr_fd(LIGHTCORAL, STDERR);
-	ft_putstr_fd(" <n_philosophers> <time_to_eat> <time_to_sleep>" \
-		" <time_to_die> ",
+	ft_putstr_fd(" <n_philosophers> <time_to_die> <time_to_eat>" \
+		" <time_to_sleep> ",
 		STDERR);
 	ft_putstr_fd(GREY78, STDERR);
 	ft_putstr_fd("[n_meals]\n", STDERR);
