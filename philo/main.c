@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:31:21 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/15 15:44:57 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:56:29 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ int	main(int argc, char **argv)
 	if (sanity_flag > 0)
 		return (ft_lint(sanity_flag, argv, argc, sanity_flag));
 	ft_print_settings(&settings);
-	// if (settings.n_philos == 1)
-	// 	return (ft_alone());
-	if (ft_create_forks(settings.n_philos, &settings) == -1)
-		return (ft_error("Error creating forks", 2));
-	if (ft_misc_mutexes(&settings) == -1)
-		return (ft_error("Error creating mutexes", 2));
+	ft_verbose("Initializing simulation...\n", __FILE__, __LINE__);
+	if (ft_init_simulation(&settings) < 0)
+		return (ft_error("Error while initializing the simulation", 1));
 	ft_destroy_simulation(&settings);
 	return (0);
 }
