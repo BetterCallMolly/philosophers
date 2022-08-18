@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:42:07 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/17 15:49:00 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:01:42 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_spawn_philos(t_settings *settings)
 			return (-1);
 		i++;
 	}
-	
 }
 
 int	ft_init_simulation(t_settings *settings)
