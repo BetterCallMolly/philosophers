@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/18 12:27:47 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 00:59:41 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 
 # ifndef DEBUG
 #  define DEBUG 1
+# endif
+
+# ifndef MICRO_SLEEP_THRESHOLD
+#  define MICRO_SLEEP_THRESHOLD 1000
 # endif
 
 # define STDOUT 1
@@ -48,8 +52,11 @@ typedef struct s_settings
 	int				n_meals;
 	int				limited_meals;
 	int				simulation_state;
+	long long		start_timestamp;
+	pthread_t		*threads;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	time_mutex;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	state_mutex;
 }	t_settings;
@@ -60,6 +67,8 @@ typedef struct s_philo
 	int				eaten;
 	int				state;
 	int				wait;
+	long long		last_meal;
+	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_settings		*settings;
@@ -89,13 +98,20 @@ void		ft_select_forks(t_philo *philos, t_settings *settings);
 // Misc functions
 int			ft_print_help(char *bin_name);
 int			ft_misc_mutexes(t_settings *settings);
-
+void		ft_destroy_meal_mutexes(t_settings *settings);
 // Debug functions
 void		ft_print_settings(t_settings *settings);
 void		ft_verbose(char *message, char *file, int line);
 
 // Simulation functions
+int			ft_check_death(t_settings *settings, t_philo *philo,
+				int forks_locked);
 int			ft_start_simulation(t_settings *settings);
 long long	ft_timestamp(void);
 void		*ft_life_cycle(void	*philosopher);
+void		ft_philo_log(int id, int message, t_settings *settings);
+void		ft_refree(t_settings *settings);
+int			ft_eat(t_philo *philo, t_settings *settings);
+int			ft_is_over(t_settings *settings);
+int			micro_sleep(long long duration, t_philo *philo);
 #endif
