@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:42:07 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/18 11:01:42 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:06:18 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_init_philo(int id, t_settings *settings)
 	new.eaten = 0;
 	new.settings = settings;
 	new.state = 1;
+	new.wait = id % 2;
 	settings->philos[id] = new;
 	return (0);
 }
@@ -42,6 +43,7 @@ int	ft_spawn_philos(t_settings *settings)
 			return (-1);
 		i++;
 	}
+	return (0);
 }
 
 int	ft_init_simulation(t_settings *settings)
@@ -53,4 +55,5 @@ int	ft_init_simulation(t_settings *settings)
 	if (ft_misc_mutexes(settings) == -1)
 		return (ft_error("Error creating mutexes", -1));
 	ft_select_forks(settings->philos, settings);
+	return (0);
 }
