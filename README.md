@@ -4,3 +4,4 @@
 - [ ] Readjust MICRO_SLEEP_THRESHOLD (maybe)
 - [ ] Norm
 - [ ] Makefile
+- [ ] Better handling for when pthread_create fails
