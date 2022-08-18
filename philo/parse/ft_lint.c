@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:58:40 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/11 16:35:44 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:10:16 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
  */
 void	ft_print_name(char *s, int last)
 {
-	ft_putstr_fd(BLUE3, STDERR);
-	ft_putstr_fd(s, STDERR);
-	ft_putstr_fd(RESET, STDERR);
-	ft_putstr_fd(" ", STDERR);
+	if (last)
+		printf("%s%s%s", BLUE3, s, RESET);
+	else
+		printf("%s%s%s ", BLUE3, s, RESET);
 }
 
 /**
@@ -35,11 +35,10 @@ void	ft_print_name(char *s, int last)
  */
 void	ft_print_okay(char *s, int last)
 {
-	ft_putstr_fd(GREEN2, STDERR);
-	ft_putstr_fd(s, STDERR);
-	ft_putstr_fd(RESET, STDERR);
-	if (!last)
-		ft_putstr_fd(" ", STDERR);
+	if (last)
+		printf("%s%s%s", GREEN, s, RESET);
+	else
+		printf("%s%s%s ", GREEN, s, RESET);
 }
 
 /**
@@ -50,11 +49,10 @@ void	ft_print_okay(char *s, int last)
  */
 void	ft_print_faulty(char *s, int last)
 {
-	ft_putstr_fd(RED2, STDERR);
-	ft_putstr_fd(s, STDERR);
-	ft_putstr_fd(RESET, STDERR);
-	if (!last)
-		ft_putstr_fd(" ", STDERR);
+	if (last)
+		printf("%s%s%s", RED2, s, RESET);
+	else
+		printf("%s%s%s ", RED2, s, RESET);
 }
 
 /**
@@ -76,7 +74,7 @@ int	ft_lint(int faulty_mask, char **argv, int argc, int return_code)
 	{
 		if (i == 0)
 			ft_print_name(argv[i], i == argc - 1);
-		else if (faulty_mask & (1 << i - 1))
+		else if (faulty_mask & (1 << (i - 1)))
 			ft_print_faulty(argv[i], i == argc - 1);
 		else
 			ft_print_okay(argv[i], i == argc - 1);
