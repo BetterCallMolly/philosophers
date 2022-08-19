@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 12:27:53 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:55:30 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,5 @@ void		ft_refree(t_settings *settings);
 int			ft_eat(t_philo *philo, t_settings *settings);
 int			ft_is_over(t_settings *settings);
 int			micro_sleep(long long duration, t_philo *philo);
+void		ft_set_state(t_settings *settings, int state);
 #endif

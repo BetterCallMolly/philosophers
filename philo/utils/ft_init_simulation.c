@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:42:07 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 00:26:04 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:50:44 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_init_simulation(t_settings *settings)
 
 	size = sizeof(pthread_t) * settings->n_philos;
 	settings->threads = (pthread_t *) malloc(size);
+	ft_bzero(settings->threads, size);
 	if (ft_spawn_philos(settings) == -1)
 		return (ft_error("Error while spawning philosophers", -1));
 	if (ft_create_forks(settings->n_philos, settings) == -1)
