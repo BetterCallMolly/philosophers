@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:31:07 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 14:09:26 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 14:23:12 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	set_mutex_state(t_settings *settings, int state)
 {
-	if (!state)
+	if (state)
 	{
 		pthread_mutex_lock(&settings->print_mutex);
 		pthread_mutex_lock(&settings->time_mutex);
