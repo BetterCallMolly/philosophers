@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 12:55:30 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 13:04:46 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <string.h>
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 # ifndef MICRO_SLEEP_THRESHOLD
