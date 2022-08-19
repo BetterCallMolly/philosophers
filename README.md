@@ -7,3 +7,4 @@
 - [ ] Norm
 - [ ] Makefile
 - [ ] `./philo 10 200 500 1000000000` hangs too much at the end -> shorten micro-sleep
+- [ ] `./philo 10 200 500 100` same hanging
