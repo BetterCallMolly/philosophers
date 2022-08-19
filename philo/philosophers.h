@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 13:04:46 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 13:07:30 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_settings
 {
 	int				limited_meals;
 	int				simulation_state;
-	long long 		n_meals;
+	long long		n_meals;
 	long long		n_philos;
 	long long		start_timestamp;
 	long long		time_to_die;
