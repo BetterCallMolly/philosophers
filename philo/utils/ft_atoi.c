@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:33:25 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/11 13:32:37 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:24:37 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,19 @@ static int	ft_full_digit(const char *s, int i)
 	return (1);
 }
 
-int	ft_atoi(const char *s)
+long long	ft_atoi(const char *s)
 {
-	int		signe;
-	int		i;
-	long	n;
+	int			signe;
+	int			i;
+	long long	n;
 
 	signe = 1;
 	i = 0;
 	n = 0;
 	ft_skip_space(s, &i);
 	ft_skip_polarity(s, &i, &signe);
+	if (ft_strlen((char *) s + i) > 21)
+		return (-1);
 	if (!ft_full_digit(s, i))
 		return (-1);
 	while (s[i] >= '0' && s[i] <= '9')

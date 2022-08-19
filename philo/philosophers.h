@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:36:09 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 00:59:41 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:27:53 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ typedef struct s_philo	t_philo;
 
 typedef struct s_settings
 {
-	int				n_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				n_meals;
 	int				limited_meals;
 	int				simulation_state;
+	long long 		n_meals;
+	long long		n_philos;
 	long long		start_timestamp;
-	pthread_t		*threads;
-	t_philo			*philos;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	time_mutex;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	state_mutex;
+	pthread_mutex_t	time_mutex;
+	pthread_t		*threads;
+	t_philo			*philos;
 }	t_settings;
 
 typedef struct s_philo
@@ -79,8 +79,8 @@ int			ft_putnbr_fd(int n, int fd);
 int			ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 int			ft_strlen(char *s);
-int			ft_atoi(const char *s);
 void		ft_bzero(void *s, size_t n);
+long long	ft_atoi(const char *s);
 
 int			ft_error(char *message, int return_code);
 

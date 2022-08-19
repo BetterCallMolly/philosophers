@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:44:55 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/11 16:35:51 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:26:47 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ int	ft_sanity(t_settings *settings)
 	int	mask;
 
 	mask = 0;
-	if (settings->n_philos <= 0)
+	if (settings->n_philos <= 0 || settings->n_philos > 2147483647)
 		mask |= 0b1;
-	if (settings->time_to_die <= 0)
+	if (settings->time_to_die <= 0 || settings->time_to_die > 2147483647)
 		mask |= 0b10;
-	if (settings->time_to_eat <= 0)
+	if (settings->time_to_eat <= 0 || settings->time_to_eat > 2147483647)
 		mask |= 0b100;
-	if (settings->time_to_sleep <= 0)
+	if (settings->time_to_sleep <= 0 || settings->time_to_sleep > 2147483647)
 		mask |= 0b1000;
-	if (settings->n_meals < 0 && settings->limited_meals)
+	if ((settings->n_meals < 0 || settings->n_meals > 2147483647)
+		&& settings->limited_meals)
 		mask |= 0b10000;
 	return (mask);
 }
