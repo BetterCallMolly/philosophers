@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:02:27 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 12:16:31 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 14:12:45 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	ft_set_state(t_settings *settings, int state)
 	pthread_mutex_lock(&settings->state_mutex);
 	settings->simulation_state = state;
 	pthread_mutex_unlock(&settings->state_mutex);
+}
+
+int	ft_get_state(t_settings *settings)
+{
+	int	state;
+
+	pthread_mutex_lock(&settings->state_mutex);
+	state = settings->simulation_state;
+	pthread_mutex_unlock(&settings->state_mutex);
+	return (state);
 }
 
 int	ft_is_dead(t_philo *philo)
@@ -58,13 +68,8 @@ void	ft_refree(t_settings *settings)
 				no_spaghettis++;
 			ft_is_dead(&settings->philos[i]);
 			pthread_mutex_unlock(&settings->philos[i].meal_mutex);
-			pthread_mutex_lock(&settings->state_mutex);
-			if (settings->simulation_state == 1)
-			{
-				pthread_mutex_unlock(&settings->state_mutex);
+			if (ft_get_state(settings) == 1)
 				return ;
-			}
-			pthread_mutex_unlock(&settings->philos[i].settings->state_mutex);
 			i++;
 		}
 		if (no_spaghettis == settings->n_philos)
