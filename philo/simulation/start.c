@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:35:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 13:03:47 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 13:08:02 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ int	ft_join_threads(t_settings *settings, int panic)
 				return (1);
 			i++;
 		}
-	} else {
+	}
+	else
+	{
 		while (i < settings->n_philos)
 		{
-			if (settings->threads[i] && 
-				pthread_join(settings->threads[i], NULL))
+			if (settings->threads[i]
+				&& pthread_join(settings->threads[i], NULL))
 				return (1);
 			i++;
 		}
