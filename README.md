@@ -6,3 +6,4 @@
 - [ ] Readjust MICRO_SLEEP_THRESHOLD
 - [ ] Norm
 - [ ] Makefile
+- [ ] `./philo 10 200 500 1000000000` hangs too much at the end -> shorten micro-sleep
