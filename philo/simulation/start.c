@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:35:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 12:56:27 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 13:03:47 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_start_philo(t_philo *philo)
 {
 	pthread_t	thread;
 
-	if (philo->id == 4)
-		return (1);
 	if (pthread_create(&thread, NULL, &ft_life_cycle, (void *)philo) != 0)
 		return (1);
 	philo->settings->threads[philo->id - 1] = thread;
