@@ -6,7 +6,7 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 11:35:34 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 13:08:02 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 14:16:04 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int	ft_join_threads(t_settings *settings, int panic)
 	return (0);
 }
 
-void	ft_handle_thread_error(t_settings *settings)
+int	ft_handle_thread_error(t_settings *settings)
 {
 	ft_error("Failed to initialize simulation properly. Panic exiting", -1);
 	ft_set_state(settings, 0x42);
 	ft_error("Waiting for threads to end.", -1);
 	ft_join_threads(settings, 1);
 	ft_error("Destroying simulation", -1);
+	return (1);
 }
 
 int	ft_start_philo(t_philo *philo)
@@ -67,20 +68,14 @@ int	ft_start_simulation(t_settings *settings)
 	while (i < settings->n_philos)
 	{
 		if (ft_start_philo(&settings->philos[i]))
-		{
-			ft_handle_thread_error(settings);
-			return (1);
-		}
+			return (ft_handle_thread_error(settings));
 		i += 2;
 	}
 	i = 0;
 	while (i < settings->n_philos)
 	{
 		if (ft_start_philo(&settings->philos[i]))
-		{
-			ft_handle_thread_error(settings);
-			return (1);
-		}
+			return (ft_handle_thread_error(settings));
 		i += 2;
 	}
 	ft_refree(settings);
