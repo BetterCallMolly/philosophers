@@ -6,11 +6,18 @@
 /*   By: jallerha <jallerha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 20:02:27 by jallerha          #+#    #+#             */
-/*   Updated: 2022/08/19 00:45:47 by jallerha         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:16:31 by jallerha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
+
+void	ft_set_state(t_settings *settings, int state)
+{
+	pthread_mutex_lock(&settings->state_mutex);
+	settings->simulation_state = state;
+	pthread_mutex_unlock(&settings->state_mutex);
+}
 
 int	ft_is_dead(t_philo *philo)
 {
@@ -61,6 +68,9 @@ void	ft_refree(t_settings *settings)
 			i++;
 		}
 		if (no_spaghettis == settings->n_philos)
+		{
+			ft_set_state(settings, 1);
 			return ;
+		}
 	}
 }
