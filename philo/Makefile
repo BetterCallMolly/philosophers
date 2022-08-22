@@ -1,6 +1,6 @@
 NAME=philo
 CC=cc
-CFLAGS= -pthread -fsanitize=address -Wall -Werror -Wextra -D DEBUG=0
+CFLAGS= -pthread -Wall -Werror -Wextra -D DEBUG=0
 RM = rm -f
 
 SRCS = utils/destroy_simulation.c \
